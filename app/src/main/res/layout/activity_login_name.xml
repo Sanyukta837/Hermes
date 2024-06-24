@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cream"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/_20sdp"
+    android:weightSum="100"
+    tools:context=".Login">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hermes_trans"
+        android:layout_weight="10"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:gravity="center">
+        <RelativeLayout
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/circluar_bg"
+            android:layout_margin="@dimen/_10sdp"
+            android:backgroundTint="@color/grey_pale">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/_18sdp"
+                android:text=""/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/circluar_bg"
+            android:layout_margin="@dimen/_10sdp"
+            android:backgroundTint="@color/grey_pale">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/_18sdp"
+                android:text=""/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/circluar_bg"
+            android:layout_margin="@dimen/_10sdp"
+            android:backgroundTint="@color/brown">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="@dimen/_18sdp"
+                android:text=""/>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_110sdp"
+        android:src="@drawable/username"
+        android:layout_weight="20"
+        app:tint="@color/brown"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Your Username"
+        android:textStyle="bold"
+        android:layout_gravity="center_vertical"
+        android:letterSpacing="0.08"
+        android:textSize="@dimen/_20sdp"
+
+
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="25"
+        android:gravity="center">
+
+
+
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:hint="Username"
+            android:inputType="text"
+            android:padding="@dimen/_10sdp"
+            android:background="@drawable/input_box_rounded"
+            android:elevation="5dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/button_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter username"
+            android:backgroundTint="@color/brown"
+
+            />
+        <ProgressBar
+            android:id="@+id/username_progressbar"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/brown"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+</LinearLayout>
