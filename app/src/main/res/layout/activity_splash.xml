@@ -8,17 +8,19 @@
     android:background="@color/cream"
     tools:context=".splash">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="@dimen/_160sdp"
-        android:layout_height="@dimen/_60sdp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hermes"
+        android:textSize="@dimen/_70sdp"
+        android:fontFamily="@font/corin"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387"
-        app:srcCompat="@drawable/hermes_trans" />
+        app:layout_constraintVertical_bias="0.387" />
 
     <TextView
         android:id="@+id/slogan"
@@ -32,16 +34,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.487" />
+        app:layout_constraintVertical_bias="0.531" />
 
     <TextView
         android:id="@+id/from_tag"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/spartan_thin"
+        android:fontFamily="@font/segoesc"
         android:gravity="center"
         android:text="From"
-        android:textSize="@dimen/_11sdp"
+        android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -53,10 +55,11 @@
         android:id="@+id/creator"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/spartan_thin"
+        android:fontFamily="@font/segoesc"
         android:text="Sanyukta Shrestha"
-        android:textSize="@dimen/_11sdp"
+        android:textSize="@dimen/_15sdp"
         android:gravity="center"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -12,11 +12,13 @@
     android:weightSum="100"
     tools:context=".Login">
 
-    <ImageView
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/hermes_trans"
-        android:layout_weight="10"
+        android:text="Hermes"
+        android:textSize="@dimen/_50sdp"
+        android:fontFamily="@font/corin"
+
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,16 +69,18 @@
     <ImageView
         android:layout_width="@dimen/_110sdp"
         android:layout_height="@dimen/_110sdp"
-        android:src="@drawable/talcha"
+        android:src="@drawable/password"
         android:layout_weight="20"
         app:tint="@color/brown"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter the OTP sent to you"
+        android:text="Enter the OTP code you received"
+        android:fontFamily="@font/segoesc"
+        android:textAlignment="center"
         android:textStyle="bold"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
         android:letterSpacing="0.08"
         android:textSize="@dimen/_20sdp"
 
@@ -116,6 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enter OTP"
+            android:fontFamily="@font/segoesc"
             android:backgroundTint="@color/brown"
 
             />
@@ -125,6 +130,14 @@
             android:layout_height="wrap_content"
             android:indeterminateTint="@color/brown"
             android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Resend OTP in 30 seconds"
+            android:id="@+id/resend_otp"
+            android:layout_weight="10"
             />
     </LinearLayout>
 </LinearLayout>
