@@ -98,6 +98,7 @@
             android:layout_height="wrap_content"
             app:ccp_showFlag="false"
             app:ccp_showNameCode="false"
+            app:ccp_defaultNameCode="NP"
             android:id="@+id/login_country"
             />
         

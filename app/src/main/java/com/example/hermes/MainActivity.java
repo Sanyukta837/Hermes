@@ -14,19 +14,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseAuth authentication;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent intent_toLoginn = new Intent(MainActivity.this, Login.class);
-        startActivity(intent_toLoginn);
-        authentication = FirebaseAuth.getInstance();
 
-        if(authentication == null){
-            Intent intent_toLogin = new Intent(MainActivity.this, Login.class);
-            startActivity(intent_toLogin);
-        }
+
 
     }
 }
