@@ -17,7 +17,17 @@
             android:exported="false" />
         <activity
             android:name=".LoginOTP"
-            android:exported="false" />
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter android:label="name">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
+                    android:host="hermes-75016.firebaseapp.com"
+                    android:pathPrefix="/__/auth/handler" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Login"
             android:exported="false"

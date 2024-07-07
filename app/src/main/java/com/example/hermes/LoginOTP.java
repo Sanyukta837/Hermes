@@ -47,9 +47,10 @@ public class LoginOTP extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FirebaseApp.initializeApp(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_otp);
-        FirebaseApp.initializeApp(this);
+
         otp_input = findViewById(R.id.login_otp);
         otp_enter_button = findViewById(R.id.button_enter_otp);
         otp_progress_bar = findViewById(R.id.otp_progressbar);
@@ -60,11 +61,12 @@ public class LoginOTP extends AppCompatActivity {
 
 
         phone_number = getIntent().getExtras().getString("phone_obtained");
+
         sendOtp(phone_number, false);
 
 
         otp_enter_button.setOnClickListener(v->{
-            String obtainedOTP = otp_enter_button.getText().toString();
+            String obtainedOTP = otp_input.getText().toString();
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, obtainedOTP);
             signIn(credential);
             setInprogress(true);
@@ -107,6 +109,7 @@ public class LoginOTP extends AppCompatActivity {
                                 verificationCode = s;
                                 resendingToken = forceResendingToken;
                                 AndroidUtils.showToast(getApplicationContext(),"OTP sent successfully");
+                                Log.d("OTP Verification", "OTP sent: " + verificationCode); // Log the OTP sent
                                 setInprogress(false);
                             }
                         });
@@ -120,7 +123,7 @@ public class LoginOTP extends AppCompatActivity {
      void startResendTimer() {
         resend_otp_text.setEnabled(false);
          Timer timer = new Timer();
-         timer.scheduleAtFixedRate(new TimerTask() {
+         timer.schedule(new TimerTask() {
              @Override
              public void run() {
                  timeoutSeconds--;
@@ -160,6 +163,7 @@ public class LoginOTP extends AppCompatActivity {
 
                 }else{
                     AndroidUtils.showToast(getApplicationContext(), "OTP verification failed");
+
                 }
             }
         });
