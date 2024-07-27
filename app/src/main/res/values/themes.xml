@@ -4,6 +4,8 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@color/brown</item>
+        <item name="colorControlHighlight">@color/cream</item> <!-- This sets the ripple color for controls -->
+        <item name="colorAccent">@color/sage</item> <!-- Sets accent color which can affect other controls -->
     </style>
 
     <style name="Theme.Hermes" parent="Base.Theme.Hermes" />

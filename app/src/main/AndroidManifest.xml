@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Hermes"
         tools:targetApi="31">
         <activity
+            android:name=".SearchUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginName"
             android:exported="false" />
         <activity
@@ -21,11 +24,14 @@
             android:launchMode="singleTop">
             <intent-filter android:label="name">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="https"
+
+                <data
                     android:host="hermes-75016.firebaseapp.com"
-                    android:pathPrefix="/__/auth/handler" />
+                    android:pathPrefix="/__/auth/handler"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
         <activity

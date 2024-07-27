@@ -80,7 +80,7 @@ public class LoginName extends AppCompatActivity {
             userModel.setName(username);
         } else{
             //user exist gardaina vane constructor le instantiate garxa
-            userModel = new UserModel(username, phone_number, Timestamp.now());
+            userModel = new UserModel(username, phone_number, Timestamp.now(), FirebaseUtils.getCurrentUserID());
         }
 
         FirebaseUtils.currentUserDetails().set(userModel).addOnCompleteListener(new OnCompleteListener<Void>() {
