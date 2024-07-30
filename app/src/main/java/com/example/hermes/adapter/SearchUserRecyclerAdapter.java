@@ -1,11 +1,15 @@
 package com.example.hermes.adapter;
+import com.example.hermes.ChatActivity;
 import com.example.hermes.R;
 import com.example.hermes.model.UserModel;
+import com.example.hermes.utils.AndroidUtils;
 import com.example.hermes.utils.FirebaseUtils;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +29,7 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
 
     @Override
     protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
+        Log.d("AdapterLog", "Binding view holder at position: " + position);
         holder.usernameText.setText(model.getName());
         holder.phoneText.setText(model.getPhonenumber());
         if(model.getUserId().equals(FirebaseUtils.getCurrentUserID())){
@@ -32,13 +37,17 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
         }
 
         holder.itemView.setOnClickListener(v -> {
-            //wip
+            Intent intent = new Intent(context, ChatActivity.class);
+            AndroidUtils.passUserModelAsIntent(intent, model);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
     }
 
     @NonNull
     @Override
     public UserModelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("AdapterLog", "Creating new view holder");
         View view = LayoutInflater.from(context).inflate(R.layout.search_user_recycler_row, parent, false);
 
         return new UserModelViewHolder(view);

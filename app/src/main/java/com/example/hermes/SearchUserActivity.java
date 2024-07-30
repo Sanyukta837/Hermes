@@ -1,3 +1,4 @@
+//mine
 package com.example.hermes;
 
 import android.content.Intent;
@@ -39,7 +40,7 @@ public class SearchUserActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.search_user_recycler_view);
         searchButton.requestFocus();
         backButton.setOnClickListener(v -> {
-            onBackPressed();
+            finish();
         });
 
         searchButton.setOnClickListener(v -> {
@@ -56,7 +57,9 @@ public class SearchUserActivity extends AppCompatActivity {
 
     void setupSearchRecyclerView(String searchTerm) {
         Query query = FirebaseUtils.allUserCollectionReference()
-                .whereGreaterThanOrEqualTo("name", searchTerm);
+                .whereGreaterThanOrEqualTo("name", searchTerm)
+                .whereLessThanOrEqualTo("name",searchTerm+'\uf8ff');
+
         FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>()
                 .setQuery(query, UserModel.class).build();
 
@@ -88,6 +91,14 @@ public class SearchUserActivity extends AppCompatActivity {
         super.onResume();
         if(adapter!=null){
             adapter.startListening();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (adapter != null) {
+            adapter.stopListening();
         }
     }
 }
