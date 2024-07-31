@@ -90,17 +90,10 @@ public class SearchUserActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(adapter!=null){
-            adapter.startListening();
+            adapter.notifyDataSetChanged();
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (adapter != null) {
-            adapter.stopListening();
-        }
-    }
 }
 
 
