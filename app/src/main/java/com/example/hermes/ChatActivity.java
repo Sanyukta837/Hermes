@@ -3,6 +3,7 @@ package com.example.hermes;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,18 +12,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hermes.adapter.ChatRecyclerAdapter;
+import com.example.hermes.adapter.SearchUserRecyclerAdapter;
 import com.example.hermes.model.ChatMessageModel;
 import com.example.hermes.model.ChatroomModel;
 import com.example.hermes.model.UserModel;
 import com.example.hermes.utils.AndroidUtils;
 import com.example.hermes.utils.FirebaseUtils;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.util.Arrays;
 
@@ -33,6 +39,7 @@ public class ChatActivity extends AppCompatActivity {
     ImageButton sendMessageButton;
     TextView otherUsername;
     RecyclerView recyclerView;
+    ChatRecyclerAdapter adapter;
 
     String chatroomId;
     ChatroomModel chatroomModel;
@@ -42,6 +49,7 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         otheruser = AndroidUtils.getUserModelFromIntent(getIntent());
+        chatroomId = FirebaseUtils.getChatroomId(FirebaseUtils.getCurrentUserID(), otheruser.getUserId());
         messageInput = findViewById(R.id.chat_message_input);
         backButton = findViewById(R.id.chat_backbutton);
         sendMessageButton = findViewById(R.id.chat_send_button);
@@ -62,6 +70,35 @@ public class ChatActivity extends AppCompatActivity {
             }
             sendMessage(message);
         }));
+
+        setupChatRecyclerview();
+    }
+
+    void setupChatRecyclerview(){
+        Query query = FirebaseUtils.getChatroomMessageReference(chatroomId)
+                .orderBy("timestamp", Query.Direction.DESCENDING);
+
+
+
+        FirestoreRecyclerOptions<ChatMessageModel> options = new FirestoreRecyclerOptions.Builder<ChatMessageModel>()
+                .setQuery(query, ChatMessageModel.class).build();
+
+
+        adapter = new ChatRecyclerAdapter(options, getApplicationContext());
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager.setReverseLayout(true);
+        manager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                recyclerView.smoothScrollToPosition(0);
+            }
+        });
+
     }
 
     void sendMessage(String message){
@@ -76,6 +113,8 @@ public class ChatActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if(task.isSuccessful()){
                             messageInput.setText("");
+
+
                         }
                     }
                 });
