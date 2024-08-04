@@ -2,23 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="@dimen/_5sdp"
     >
 
     <LinearLayout
         android:id="@+id/left_chat_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/chat_message_box"
         android:padding="@dimen/_5sdp"
+        android:gravity="center"
         android:layout_marginEnd="@dimen/_80sdp"
+        android:orientation="vertical"
         >
         <TextView
             android:id="@+id/left_chat_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello,aslkdhas"
-            android:textSize="@dimen/_15sdp"
-            android:background="@drawable/chat_message_box"
-            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_12sdp"
+            android:gravity="start"
+            android:padding="@dimen/_2sdp"
 
             />
     </LinearLayout>
@@ -30,16 +34,19 @@
         android:padding="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_80sdp"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/chat_message_box"
+        android:backgroundTint="@color/sage"
+        android:gravity="center"
         >
         <TextView
             android:id="@+id/right_chat_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello"
-            android:textSize="@dimen/_15sdp"
-            android:background="@drawable/chat_message_box"
-            android:padding="@dimen/_5sdp"
-            android:backgroundTint="@color/sage"
+            android:textSize="@dimen/_12sdp"
+            android:gravity="start"
+            android:padding="@dimen/_2sdp"
+
             />
     </LinearLayout>
 

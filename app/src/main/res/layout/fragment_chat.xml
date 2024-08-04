@@ -7,12 +7,10 @@
     tools:context=".ChatFragment">
 
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chat Screen"
-        android:textSize="@dimen/_30sdp"
-        android:layout_centerInParent="true"
+        android:id="@+id/recent_recycler_view"
         />
 
 </RelativeLayout>

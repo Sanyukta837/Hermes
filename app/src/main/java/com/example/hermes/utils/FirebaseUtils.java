@@ -6,6 +6,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 
 public class FirebaseUtils {
 
@@ -46,6 +49,22 @@ public class FirebaseUtils {
         } else {
             return user2Id + "_" + user1Id;
         }
+    }
+
+    public static CollectionReference allChatroomCollectionReference(){
+        return FirebaseFirestore.getInstance().collection("chatrooms");
+    }
+
+    public static DocumentReference getOtherUserFromChatroom(List<String> userIds){
+        if(userIds.get(0).equals(FirebaseUtils.getCurrentUserID())){
+            return allUserCollectionReference().document(userIds.get(1));
+        }else{
+            return allUserCollectionReference().document(userIds.get(0));
+        }
+    }
+
+    public static String timeStampToString(Timestamp timestamp){
+        return new SimpleDateFormat("HH:MM").format(timestamp.toDate());
     }
 
 }

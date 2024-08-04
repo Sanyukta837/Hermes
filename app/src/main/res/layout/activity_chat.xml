@@ -62,9 +62,9 @@
     <RelativeLayout
         android:id="@+id/bottom_chatbox"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_80sdp"
+        android:layout_height="@dimen/_65sdp"
         android:layout_alignParentBottom="true"
-        android:padding="@dimen/_5sdp"
+        android:padding="@dimen/_4sdp"
         >
 
         <EditText
@@ -76,7 +76,7 @@
             android:background="@drawable/input_box_rounded"
             android:layout_centerInParent="true"
             android:elevation="@dimen/_8sdp"
-            android:padding="@dimen/_10sdp"
+            android:padding="@dimen/_8sdp"
             android:layout_toLeftOf="@id/chat_send_button"
             />
 
