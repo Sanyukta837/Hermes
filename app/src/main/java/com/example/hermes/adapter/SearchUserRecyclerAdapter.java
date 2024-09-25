@@ -9,6 +9,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,14 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
         if(model.getUserId().equals(FirebaseUtils.getCurrentUserID())){
             holder.usernameText.setText(model.getName() + " (Me)");
         }
+
+        FirebaseUtils.getOtherProfilePicStorageRef(model.getUserId()).getDownloadUrl()
+                .addOnCompleteListener(pic_task -> {
+                    if(pic_task.isSuccessful()){
+                        Uri uri = pic_task.getResult();
+                        AndroidUtils.setProfilePic(context,uri,holder.profilePicture);
+                    }
+                });
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ChatActivity.class);

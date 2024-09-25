@@ -13,6 +13,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,15 @@ public class RecentChatsRecyclerAdapter extends FirestoreRecyclerAdapter<Chatroo
                         boolean wasLastMessageSentByMe;
                         wasLastMessageSentByMe = model.getLastMessageSenderId().equals(FirebaseUtils.getCurrentUserID());
                         UserModel otherUserModel = task.getResult().toObject(UserModel.class);
+
+                        FirebaseUtils.getOtherProfilePicStorageRef(otherUserModel.getUserId()).getDownloadUrl()
+                                .addOnCompleteListener(pic_task -> {
+                                    if(pic_task.isSuccessful()){
+                                        Uri uri = pic_task.getResult();
+                                        AndroidUtils.setProfilePic(context,uri,holder.profilePicture);
+                                    }
+                                });
+
                         holder.usernameText.setText(otherUserModel.getName());
                         if(wasLastMessageSentByMe){
                             holder.lastMessageText.setText("You: " + model.getLastMessage());

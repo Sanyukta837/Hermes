@@ -1,8 +1,10 @@
 package com.example.hermes;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -40,6 +42,7 @@ public class ChatActivity extends AppCompatActivity {
     TextView otherUsername;
     RecyclerView recyclerView;
     ChatRecyclerAdapter adapter;
+    ImageView imageView;
 
     String chatroomId;
     ChatroomModel chatroomModel;
@@ -54,7 +57,16 @@ public class ChatActivity extends AppCompatActivity {
         backButton = findViewById(R.id.chat_backbutton);
         sendMessageButton = findViewById(R.id.chat_send_button);
         otherUsername = findViewById(R.id.chat_otheruser);
+        imageView = findViewById(R.id.profile_picture_image_view);
         recyclerView = findViewById(R.id.chat_recycler_view);
+
+        FirebaseUtils.getOtherProfilePicStorageRef(otheruser.getUserId()).getDownloadUrl()
+                .addOnCompleteListener(pic_task -> {
+                    if(pic_task.isSuccessful()){
+                        Uri uri = pic_task.getResult();
+                        AndroidUtils.setProfilePic(this,uri,imageView);
+                    }
+                });
 
         backButton.setOnClickListener(v->{
             finish();

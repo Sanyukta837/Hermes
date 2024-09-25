@@ -3,8 +3,12 @@ package com.example.hermes.utils;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.hermes.model.UserModel;
 import com.google.firebase.firestore.auth.User;
 
@@ -26,6 +30,10 @@ public class AndroidUtils {
         userModel.setPhonenumber(intent.getStringExtra("phone"));
         userModel.setUserId(intent.getStringExtra("userId"));
         return userModel;
+    }
+
+    public static void setProfilePic (Context context, Uri imageUri, ImageView imageView){
+        Glide.with(context).load(imageUri).apply(RequestOptions.circleCropTransform()).into(imageView);
     }
 
 

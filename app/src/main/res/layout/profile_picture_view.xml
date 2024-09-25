@@ -9,7 +9,7 @@
         android:layout_height="@dimen/_52sdp"
         android:src="@drawable/profile"
         android:padding="@dimen/_4sdp"
-        app:tint="@color/grey"
+
         android:backgroundTint="@color/cream"
         android:background="@null"
         android:layout_centerInParent="true"
